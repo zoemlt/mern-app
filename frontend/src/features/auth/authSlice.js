@@ -19,11 +19,9 @@ export const register = createAsyncThunk(
       return await authService.register(user);
     } catch (err) {
       const message =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
-        error.message ||
-        error.toString();
+        (err.response && err.response.data && err.response.data.message) ||
+        err.message ||
+        err.toString();
       return thunkAPI.rejectWithValue(message);
     }
   }
